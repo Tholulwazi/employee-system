@@ -1,0 +1,120 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CV-ALL #DAYS-LEFT #LEAVE-E-DATE #LEAVE-S-DATE #NAME #NUM-DAYS
+*     #PERSONNEL-ID #PROGRAM EMPLOYEES.LEAVE-DUE EMPLOYEES.LEAVE-TAKEN LEAVE-END(*)
+*     LEAVE-START(*)
+DEFINE DATA PARAMETER
+1  #CV-ALL (C)
+1 #DAYS-LEFT (N02.0)
+1 #LEAVE-E-DATE (A008)
+1 #LEAVE-S-DATE (A008)
+1 #NAME (A020)
+1 #NUM-DAYS (N04.0)
+1 #PERSONNEL-ID (A008)
+1 #PROGRAM (A008)
+1 EMPLOYEES.LEAVE-DUE (N02.0)
+1 EMPLOYEES.LEAVE-TAKEN (N02.0)
+1 LEAVE-END (N08.0/00001:00004)
+1 LEAVE-START (N08.0/00001:00004)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NYUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 052T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP     :'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 021T 'HR Information System'
+ 060T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 021T 'Employee Leave Details'
+/
+/
+ 002T 'Person ID:'
+ 019T #PERSONNEL-ID /*.01D008 A008 .
+      (AD=ODLT )
+/
+ 002T 'Surname:'
+ 019T #NAME /*.01D020 A020 .
+      (AD=ODLT )
+/
+/
+ 006T 'You have '(V)
+ 016T #DAYS-LEFT /*.01U002 N02.0.
+      (AD=ODT CD=RE ZP=ON )
+ 019T 'Leave days remaining !'(V)
+/
+/
+ 002T 'Leave Due:'
+ 015T EMPLOYEES.LEAVE-DUE /*.01U002 N02.0.
+      (AD=ODLT )
+ 020T 'Leave Taken:'
+ 036T EMPLOYEES.LEAVE-TAKEN /*.01U002 N02.0.
+      (AD=ODLT )
+/
+/
+ 002T 'LEAVE START DATE'
+ 020T #LEAVE-S-DATE /*.99U008 A008 .
+      (AD=MCLT CD=BL CV=#CV-ALL )
+ 032T 'YYYY/MM/DD'(C)
+/
+/
+ 002T 'LEAVE END DATE'
+ 020T #LEAVE-E-DATE /*.99U008 A008 .
+      (AD=MCLT CD=BL CV=#CV-ALL )
+ 032T 'YYYY/MM/DD'(C)
+/
+/
+ 006T 'Number of Days'
+ 021T #NUM-DAYS /*.01U004 N04.0.
+      (AD=ODT )
+/
+/
+ 005T 'Previous Leaves booked'
+/
+ 003T 'Leave Start'
+ 022T 'Leave End'
+/
+ 003T LEAVE-START (1) /*.01U008 N08.0.
+      (AD=ODLT )
+   /**A1000040000100001000010000100001100004001001000001000HV
+ 022T LEAVE-END (1) /*.01U008 N08.0.
+      (AD=ODLT )
+   /**A1000040000100001000010000100001100004001001000001000HV
+/
+ 003T LEAVE-START (2) /*.01U008 N08.0.
+      (AD=ODLT )
+ 022T LEAVE-END (2) /*.01U008 N08.0.
+      (AD=ODLT )
+/
+ 003T LEAVE-START (3) /*.01U008 N08.0.
+      (AD=ODLT )
+ 022T LEAVE-END (3) /*.01U008 N08.0.
+      (AD=ODLT )
+/
+ 003T LEAVE-START (4) /*.01U008 N08.0.
+      (AD=ODLT )
+ 022T LEAVE-END (4) /*.01U008 N08.0.
+      (AD=ODLT )
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.LEAVE-DUE                                              
+* CDIR EMPLOYEES                        LEAVE-DUE                       ;
+RULEVAR D01EMPLOYEES.LEAVE-TAKEN                                            
+* CDIR EMPLOYEES                        LEAVE-TAKEN                     ;
+* MAP2: END OF MAP *****************************************************
+END

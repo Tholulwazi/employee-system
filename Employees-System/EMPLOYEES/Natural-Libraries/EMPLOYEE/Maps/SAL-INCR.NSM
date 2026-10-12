@@ -1,0 +1,112 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CV-ALL #NEW-SALRY #OLD-SALARY #PERCNT #PROGRAM COUNTRY DEPT
+*     EMPLOYEES.FIRST-NAME EMPLOYEES.NAME EMPLOYEES.PERSONEL-ID EMPLOYEES.SALARY(*) JOB-TITLE
+DEFINE DATA PARAMETER
+1  #CV-ALL (C)
+1 #NEW-SALRY (P09.3)
+1 #OLD-SALARY (N09.2)
+1 #PERCNT (A004)
+1 #PROGRAM (A008)
+1 COUNTRY (A003)
+1 DEPT (A006)
+1 EMPLOYEES.FIRST-NAME (A020)
+1 EMPLOYEES.NAME (A020)
+1 EMPLOYEES.PERSONEL-ID (A008)
+1 EMPLOYEES.SALARY (P09.0/00001:00005)
+1 JOB-TITLE (A025)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 050T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP     :'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 023T 'HR DEPARTMENT'
+ 050T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 006T 'DASHBOARD : EMPLOYEE SALARY INCREASE'
+/
+/
+ 002T 'Pesonel-id:'
+ 020T EMPLOYEES.PERSONEL-ID /*.01U008 A008 .
+      (AD=ODLT )
+/
+ 002T '_' (045)
+/
+ 002T 'Surname:'
+ 020T EMPLOYEES.NAME /*.01U020 A020 .
+      (AD=OULT )
+/
+ 002T 'First Name:'
+ 020T EMPLOYEES.FIRST-NAME /*.01U020 A020 .
+      (AD=OULT )
+/
+ 002T 'Old Salary :'
+ 020T #OLD-SALARY /*.01D012 N09.2.
+      (AD=ODLT )
+/
+ 002T 'Percent Increase'
+ 020T #PERCNT /*.99U004 A004 .
+      (AD=MDRT CV=#CV-ALL )
+ 025T '%'
+/
+ 002T 'New Salary:'
+ 020T #NEW-SALRY /*.01U013 P09.3.
+      (AD=ODLT )
+/
+/
+ 002T 'Country:'
+ 020T COUNTRY /*.01U003 A003 .
+      (AD=OULT )
+/
+ 002T 'Department:'
+ 020T DEPT /*.01U006 A006 .
+      (AD=OULT )
+/
+ 002T 'Job Title:'
+ 020T JOB-TITLE /*.01U025 A025 .
+      (AD=OULT )
+/
+/
+ 001T 'Previous Salaries'
+ 019T EMPLOYEES.SALARY (1) /*.01D009 P09.0.
+      (AD=ODRT )
+   /**A1000050000100001000010000100001010001005001000001000HV
+ 029T EMPLOYEES.SALARY (2) /*.01D009 P09.0.
+      (AD=ODRT )
+ 039T EMPLOYEES.SALARY (3) /*.01D009 P09.0.
+      (AD=ODRT )
+ 049T EMPLOYEES.SALARY (4) /*.01D009 P09.0.
+      (AD=ODRT )
+ 059T EMPLOYEES.SALARY (5) /*.01D009 P09.0.
+      (AD=ODRT )
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.PERSONEL-ID                                            
+* CDIR EMPLOYEES                        PERSONEL-ID                     ;
+RULEVAR D01EMPLOYEES.SALARY                                                 
+* CDIR EMPLOYEES                        SALARY                          ;
+* MAP2: END OF MAP *****************************************************
+END

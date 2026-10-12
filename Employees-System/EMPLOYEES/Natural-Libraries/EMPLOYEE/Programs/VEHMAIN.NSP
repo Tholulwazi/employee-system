@@ -1,0 +1,93 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+/** New Program EMPLMAIN.
+/**
+/** :author tzu
+/* TODO Enter your code here
+DEFINE DATA LOCAL
+LOCAL USING EMPL0L01
+LOCAL USING VEH001
+LOCAL
+************************************************************
+
+************************************************************
+1 #PERSONNEL-ID (A8)
+1 #NAME (A20)
+1 #PROGRAM (A8)
+1 #RESTART-NAME (A20)
+1 #RESTART-NAME2 (A20)
+1 #LATE-RESTART-NAME (A20)
+1 #REPOS-FLAG (A1)
+1 #INDEX (N4)
+1 #INDEX1 (N4)
+1 #CURRENT-YEAR (A18) 
+1 REDEFINE #CURRENT-YEAR
+  2 #CURR-YEAR (A4)
+1 #LAST-DATE-MODIFIED (A18)
+1 #DATE (A18)
+1 REDEFINE #DATE
+  2 #TIME (A5)
+1 #G-MASSAGE (A20)
+1 #SEL (A1/1:4)
+1 #I-SEL (N5)
+1 #Q-MESSAGE (A30)
+1 #EXIT (A1)
+END-DEFINE
+SET CONTROL 'MT'
+SET KEY
+  PF3 NAMED 'EXIT'
+  PF1 NAMED 'HELP'
+
+#PROGRAM := *PROGRAM
+#LAST-DATE-MODIFIED := *DATX
+#CURRENT-YEAR := *DATG
+#DATE := *TIME 
+REPEAT
+
+  INPUT USING MAP "XXXMENU"
+  IF *PF-KEY = 'PF1'
+    INPUT USING MAP "XMENUHLP"
+  END-IF
+  
+  FOR #I-SEL= 1 TO 4
+    DECIDE ON EVERY VALUE OF #SEL(#I-SEL)
+      VALUE 'E'
+      CALLNAT "XELIST"
+        /*FETCH RETURN "EMPLIST"
+      VALUE 'V'
+      CALLNAT "XVLIST2"
+     
+       /** FETCH RETURN "TEST"
+      VALUE 'S'
+        FETCH RETURN "TEST"
+      VALUE 'Q'
+      CALLNAT "XEXIT" #Q-MESSAGE #EXIT #G-MASSAGE #SEL(1:4)
+        /*CALLNAT "XEXIT" #Q-MESSAGE #EXIT
+      NONE
+        IGNORE
+    END-DECIDE
+    RESET #SEL(#I-SEL)
+  END-FOR
+  
+  IF *PF-KEY = 'PF3'
+    ESCAPE MODULE
+  END-IF
+END-REPEAT
+
+* REPEAT
+* 
+*   DECIDE ON EVERY VALUE OF #TIME
+*     VALUE  '00:00' : '11:59'
+*       MOVE 'Good Morning ' TO #G-MASSAGE
+*     VALUE  '12:00' : '16:59'
+*       MOVE 'Good Afternoon ' TO #G-MASSAGE
+*     VALUE  '17:00' : '23:59'
+*       MOVE 'Good Evening' TO #G-MASSAGE
+*     NONE IGNORE
+*   END-DECIDE
+* 
+* 
+* END-REPEAT
+END

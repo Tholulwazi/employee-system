@@ -1,0 +1,49 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #SELECT(*)
+DEFINE DATA PARAMETER
+1 #SELECT (A001/00001:00004)
+END-DEFINE
+FORMAT PS=013 LS=071 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(   00000               *
+* 013070        N0NNUCN             X ^      01 SYSPROF NRH            *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'Program :'
+ 012T *PROGRAM /*.01S011 A008 .
+      (AD=ODT AL=011 )
+ 046T *DATG /*.01S016 A015 .
+      (AD=ODT AL=016 )
+/
+ 048T *TIME /*.01S010 A010 .
+      (AD=ODT )
+/
+ 013T 'HELP: Gender Charecters '
+/
+/
+ 002T 'Sel: x'
+ 018T 'Gender      '
+/
+ 004T #SELECT (1) /*.99D001 A001 .
+      (AD=MDRT HE='GNDRHELP' )
+   /**A1000040000100001000010000100001100002001001001001000HV
+ 020T 'M-MALE   '
+/
+/
+ 004T #SELECT (2) /*.99D001 A001 .
+      (AD=MDRT HE='GNDRHELP' )
+ 020T 'F-FEMALE'
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

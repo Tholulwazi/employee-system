@@ -1,0 +1,177 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+/** New Subprogram WRK41ADD.
+/**
+/** :author tzu
+ DEFINE DATA 
+* PARAMETER
+* 1 #PERSONNEL-ID (A8)
+* 1 #NAME (A20)
+* 1 #MIDDLE-I (A20)
+* 1 #FIRST-NAME (A20)
+* 1 #G-DESCRIPTION (A10)
+* 1 #S-DESCRIPTION (A10)
+LOCAL USING EMPL0L01
+LOCAL
+1 #PERSONNEL-ID (N8)
+1 #NAME (A20)
+1 #MIDDLE-I (A20)
+1 #FIRST-NAME (A20)
+1 #G-DESCRIPTION (A10)
+1 #S-DESCRIPTION (A10)
+* 1 EMPLOYEES 
+*   2 PERSONEL-ID (A8) /* CNNNNNNN
+*   2 FIRST-NAME (A20) /* FIRST / CHRISTIAN NAME
+*   2 MIDDLE-I (A20) /* MIDDLE INITIAL
+*   2 NAME (A20) /* SURNAME / FAMILY NAME
+*   2 MAR-STAT (A20) /* M=MARRIED
+*   2 GENDER (A1)
+*   2 LANG (A3/1:5) /* LANGUAGES SPOKEN
+
+1 #LANG (A3/1:5)
+1 #SELECT (A1/1:5)
+1 #PROGRAM (A8)
+1 #GENDER (A1)
+1 #CV-ALL (C)
+1 #CV-ID (C)
+1 #MARITAL (A1)
+
+******************************************************************
+/*INDEX
+1 #INDEX (N3)
+******************************************************************
+END-DEFINE
+* SET KEY
+*   PF5 NAMED 'ADD'
+* IF *PF-KEY = 'PF5'
+#PROGRAM := *PROGRAM
+*   IF *PF-KEY = 'PF4' 
+    #NAME := NAME
+    #MIDDLE-I := MIDDLE-I
+    #FIRST-NAME := FIRST-NAME
+    #MARITAL := MAR-STAT
+    #GENDER := GENDER
+    #LANG (1:5) := LANG (*)
+    
+     INPUT USING MAP "EMPLOPI"
+     
+READ  EMPLOYEES DESCENDING WITH  PERSONEL-ID 
+
+IF PERSONEL-ID IS (N8)
+#PERSONNEL-ID := VAL(PERSONEL-ID)
+END-IF
+
+MOVE (AD=I) TO #CV-ALL
+MOVE (AD=P) TO #CV-ID
+ADD 1 TO #PERSONNEL-ID
+
+    DECIDE ON EVERY VALUE OF GENDER
+      VALUE 'M' MOVE 'MALE' TO #G-DESCRIPTION
+      VALUE 'F' MOVE 'FEMALE' TO #G-DESCRIPTION
+      NONE MOVE 'NOT SPEC'  TO #G-DESCRIPTION
+    END-DECIDE
+    /**
+    DECIDE ON EVERY VALUE OF MAR-STAT
+      VALUE 'S' MOVE 'SINGLE'   TO  #S-DESCRIPTION
+      VALUE 'M' MOVE 'MARRIED'  TO  #S-DESCRIPTION
+      VALUE 'D' MOVE 'DIVORCED' TO  #S-DESCRIPTION
+      VALUE 'W' MOVE 'WIDOWED'  TO  #S-DESCRIPTION
+      NONE MOVE 'NOT SPEC'      TO  #S-DESCRIPTION
+    END-DECIDE
+
+
+*   IF *PF-KEY = 'PF4' 
+*     #NAME := NAME
+*     #MIDDLE-I := MIDDLE-I
+*     #FIRST-NAME := FIRST-NAME
+*     #MARITAL := MAR-STAT
+*     #GENDER := GENDER
+*     #LANG (1:5) := LANG (*)
+*     
+    DECIDE ON EVERY VALUE OF GENDER
+      VALUE 'M' MOVE 'MALE' TO #G-DESCRIPTION
+      VALUE 'F' MOVE 'FEMALE' TO #G-DESCRIPTION
+      NONE MOVE 'NOT SPEC'  TO #G-DESCRIPTION
+    END-DECIDE
+    /**
+    DECIDE ON EVERY VALUE OF MAR-STAT
+      VALUE 'S' MOVE 'SINGLE'   TO  #S-DESCRIPTION
+      VALUE 'M' MOVE 'MARRIED'  TO  #S-DESCRIPTION
+      VALUE 'D' MOVE 'DIVORCED' TO  #S-DESCRIPTION
+      VALUE 'W' MOVE 'WIDOWED'  TO  #S-DESCRIPTION
+      NONE MOVE 'NOT SPEC'      TO  #S-DESCRIPTION
+    END-DECIDE
+    /**
+    INPUT USING MAP "EMPDET"
+
+/***validation
+    IF #NAME = ' '
+      REINPUT 'Surname is Mandotory'
+        MARK *#NAME
+    END-IF
+/**
+    IF #FIRST-NAME = ' '
+      REINPUT 'Name is Mandotory'
+        MARK *#FIRST-NAME
+    END-IF
+/**
+    IF #GENDER = ' '
+      REINPUT 'Gender can not be left blank'
+        MARK *#GENDER
+    ELSE
+      IF NOT (#GENDER EQ 'M' OR EQ 'F')
+        REINPUT' enter only "M" or "F"'
+          MARK *#GENDER
+      END-IF
+    END-IF
+/**
+    IF #MARITAL = ' '
+      REINPUT 'Gender can not be left blank'
+        MARK *#MARITAL
+    ELSE
+      IF NOT (#MARITAL EQ 'M' OR EQ 'W' OR EQ 'S' OR EQ 'D')
+        REINPUT' enter only "M","S" ,"D" OR "W"'
+          MARK *#MARITAL
+      END-IF
+    END-IF
+/**
+    IF #LANG(1) = ' '
+      REINPUT 'Atleast one language should be filled'
+        MARK *#LANG(1)
+    END-IF
+
+
+RESET #S-DESCRIPTION #G-DESCRIPTION 
+MOVE (AD=P) TO #CV-ALL
+    INPUT WITH TEXT 'EMPLOYEE RECORD UPDATE WAS SUCCESSFUL' USING MAP "EMPDET"
+
+
+       NAME  := #NAME 
+      FIRST-NAME  := #FIRST-NAME
+      MIDDLE-I  := #MIDDLE-I 
+     MAR-STAT  := #MARITAL  
+     GENDER  :=   #GENDER
+      LANG (*) := #LANG (1:5)
+     
+     
+        DECIDE ON EVERY VALUE OF GENDER
+      VALUE 'M' MOVE 'MALE' TO #G-DESCRIPTION
+      VALUE 'F' MOVE 'FEMALE' TO #G-DESCRIPTION
+      NONE MOVE 'NOT SPEC'  TO #G-DESCRIPTION
+    END-DECIDE
+    /**
+    DECIDE ON EVERY VALUE OF MAR-STAT
+      VALUE 'S' MOVE 'SINGLE'   TO  #S-DESCRIPTION
+      VALUE 'M' MOVE 'MARRIED'  TO  #S-DESCRIPTION
+      VALUE 'D' MOVE 'DIVORCED' TO  #S-DESCRIPTION
+      VALUE 'W' MOVE 'WIDOWED'  TO  #S-DESCRIPTION
+      NONE MOVE 'NOT SPEC'      TO  #S-DESCRIPTION
+    END-DECIDE
+*     UPDATE
+*   END TRANSACTION
+*   END-IF
+END-READ
+* END-IF
+END

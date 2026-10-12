@@ -1,0 +1,55 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #SELECT(*)
+DEFINE DATA PARAMETER
+1 #SELECT (A001/00001:00004)
+END-DEFINE
+FORMAT PS=013 LS=056 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(   00000               *
+* 013055        N0NNUCN             X ^      01 SYSPROF NRH            *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'Program :'
+ 012T *PROGRAM /*.01S011 A008 .
+      (AD=ODT AL=011 )
+ 036T *DATG /*.01S016 A015 .
+      (AD=ODT AL=016 )
+/
+ 042T *TIME /*.01S010 A010 .
+      (AD=ODT )
+/
+ 013T 'HELP: Marital Statuses'
+/
+/
+ 002T 'Sel: x'
+ 021T 'Marital Stat'
+/
+ 004T #SELECT (1) /*.99D001 A001 .
+      (AD=MDRT )
+   /**A1000040000100001000010000100001100004001001001001000HV
+ 020T 'W-WIDOWED'
+/
+/
+ 004T #SELECT (2) /*.99D001 A001 .
+      (AD=MDRT )
+ 020T 'S-SINGLE'
+/
+/
+ 004T #SELECT (3) /*.99D001 A001 .
+      (AD=MDRT )
+ 020T 'D-DIVORCED'
+/
+/
+ 004T #SELECT (4) /*.99D001 A001 .
+      (AD=MDRT )
+ 020T 'M-MARRIED '
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

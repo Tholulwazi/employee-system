@@ -1,0 +1,124 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CV-CHASIS-NUM #CV-COLOUR #CV-DATE-ACQ #CV-MAKE #CV-MODEL #CV-REG-NUM
+*     #CV-YEAR #NAME #PROGRAM #TOTAL-VE #VEHICLE-COUNT VIHICLES.CHASIS-NUM
+*     VIHICLES.COLOUR VIHICLES.DATE-ACQ VIHICLES.MAKE VIHICLES.MODEL VIHICLES.PERSONEL-ID
+*     VIHICLES.REG-NUM VIHICLES.YEAR
+DEFINE DATA PARAMETER
+1  #CV-CHASIS-NUM (C)
+1  #CV-COLOUR (C)
+1  #CV-DATE-ACQ (C)
+1  #CV-MAKE (C)
+1  #CV-MODEL (C)
+1  #CV-REG-NUM (C)
+1  #CV-YEAR (C)
+1 #NAME (A020)
+1 #PROGRAM (A008)
+1 #TOTAL-VE (N01.0)
+1 #VEHICLE-COUNT (N01.0)
+1 VIHICLES.CHASIS-NUM (B004)
+1 VIHICLES.COLOUR (A010)
+1 VIHICLES.DATE-ACQ (N08.0)
+1 VIHICLES.MAKE (A020)
+1 VIHICLES.MODEL (A020)
+1 VIHICLES.PERSONEL-ID (A008)
+1 VIHICLES.REG-NUM (A015)
+1 VIHICLES.YEAR (N04.0)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM:'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 065T *DATG /*.01S010 A015 .
+      (AD=ODT AL=010 )
+/
+ 001T 'MAP NAME:'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 066T *TIME /*.01S008 A010 .
+      (AD=ODT AL=008 )
+/
+ 026T 'EMPLOYEE VEHICLE DETAILS'
+/
+/
+ 001T 'Personal ID:'
+ 023T VIHICLES.PERSONEL-ID /*.01U008 A008 .
+      (AD=ODLT )
+/
+ 001T 'Surname:'
+ 023T #NAME /*.01D020 A020 .
+      (AD=ODLT )
+/
+/
+ 001T 'Registration Number:'
+ 023T VIHICLES.REG-NUM /*.99U015 A015 .
+      (AD=MDLT CV=#CV-REG-NUM )
+/
+ 001T 'Make:'
+ 023T VIHICLES.MAKE /*.99U020 A020 .
+      (AD=MDLT CV=#CV-MAKE )
+/
+ 001T 'Model:'
+ 023T VIHICLES.MODEL /*.99U020 A020 .
+      (AD=MDLT CV=#CV-MODEL )
+/
+ 001T 'colour:'
+ 023T VIHICLES.COLOUR /*.99U010 A010 .
+      (AD=MDLT CV=#CV-COLOUR )
+/
+ 001T 'Year:'
+ 023T VIHICLES.YEAR /*.99U004 N04.0.
+      (AD=MDLT CV=#CV-YEAR )
+/
+ 001T 'Chasis Number:'
+ 023T VIHICLES.CHASIS-NUM /*.99U008 B004 .
+      (AD=MDLT CV=#CV-CHASIS-NUM )
+/
+ 001T 'Date Acquired:'
+ 023T VIHICLES.DATE-ACQ /*.99U008 N08.0.
+      (AD=MDLT CV=#CV-DATE-ACQ )
+/
+ 001T 'Vehicle Count:'
+ 024T #VEHICLE-COUNT /*.01U001 N01.0.
+      (AD=OURT CD=BL )
+ 026T 'Of'
+ 029T #TOTAL-VE /*.01U001 N01.0.
+      (AD=OULT CD=TU )
+/
+/
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01VIHICLES.PERSONEL-ID                                             
+* CDIR VIHICLES                         PERSONEL-ID                     ;
+RULEVAR D01VIHICLES.REG-NUM                                                 
+INCDIR VIHICLES-DATA                    REG-NUM                         ;
+RULEVAR D01VIHICLES.MAKE                                                    
+INCDIR VIHICLES-DATA                    MAKE                            ;
+RULEVAR D01VIHICLES.MODEL                                                   
+INCDIR VIHICLES-DATA                    MODEL                           ;
+RULEVAR D01VIHICLES.COLOUR                                                  
+INCDIR VIHICLES-DATA                    COLOUR                          ;
+RULEVAR D01VIHICLES.YEAR                                                    
+INCDIR VIHICLES-DATA                    YEAR                            ;
+RULEVAR D01VIHICLES.CHASIS-NUM                                              
+INCDIR VIHICLES-DATA                    CHASIS-NUM                      ;
+RULEVAR D01VIHICLES.DATE-ACQ                                                
+INCDIR VIHICLES-DATA                    DATE-ACQ                        ;
+* MAP2: END OF MAP *****************************************************
+END

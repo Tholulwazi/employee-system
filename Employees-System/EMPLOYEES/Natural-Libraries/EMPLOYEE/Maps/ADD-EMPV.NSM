@@ -1,0 +1,120 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #ADDRESS-LINE(*) #CITY #COUNTRY #DEPT #FIRST-NAME #GENDER #JOB-TITLE
+*     #LANG(*) #MAR-STAT #NAME #POST-CODE #PROGRAM EMPLOYEES.PERSONEL-ID
+DEFINE DATA PARAMETER
+1 #ADDRESS-LINE (A020/00001:00002)
+1 #CITY (A020)
+1 #COUNTRY (A003)
+1 #DEPT (A006)
+1 #FIRST-NAME (A020)
+1 #GENDER (A001)
+1 #JOB-TITLE (A025)
+1 #LANG (A003/00001:00005)
+1 #MAR-STAT (A020)
+1 #NAME (A020)
+1 #POST-CODE (A010)
+1 #PROGRAM (A008)
+1 EMPLOYEES.PERSONEL-ID (A008)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 056T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP     :'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 023T 'HR DEPARTMENT'
+ 056T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 012T 'DASHBOARD : ADD NEW EMPLOYEE VEHICLE'
+/
+/
+ 002T 'Surname:'
+ 019T #NAME /*.99D020 A020 .
+      (AD=MULTE )
+/
+ 002T 'First Name:'
+ 019T #FIRST-NAME /*.99D020 A020 .
+      (AD=MULTE )
+/
+ 002T 'Marital Status:'
+ 019T #MAR-STAT /*.99D001 A020 .
+      (AD=MULTE AL=001 )
+/
+ 002T 'Gender:'
+ 019T #GENDER /*.99D001 A001 .
+      (AD=MULTE )
+/
+ 002T 'Address Line 1:'
+ 019T #ADDRESS-LINE (1) /*.99D020 A020 .
+      (AD=MULTE )
+   /**A1000020000100001000010000100001100002001001000001000HV
+/
+ 002T 'Address Line 2:'
+ 019T #ADDRESS-LINE (2) /*.99D020 A020 .
+      (AD=MULTE )
+/
+ 002T 'City:'
+ 019T #CITY /*.99D020 A020 .
+      (AD=MULTE )
+/
+ 002T 'Postal Code:'
+ 019T #POST-CODE /*.99D010 A010 .
+      (AD=MULTE )
+/
+ 002T 'Country:'
+ 019T #COUNTRY /*.99D003 A003 .
+      (AD=MULTE )
+/
+ 002T 'Department:'
+ 019T #DEPT /*.99D006 A006 .
+      (AD=MULTE )
+/
+ 002T 'Job Title:'
+ 019T #JOB-TITLE /*.99D025 A025 .
+      (AD=MULTE )
+/
+/
+ 002T 'Languages:'
+ 019T #LANG (1) /*.99D003 A003 .
+      (AD=ADLT )
+   /**A1000050000100001000010000100001010001005001000003000HV
+ 025T #LANG (2) /*.99D003 A003 .
+      (AD=ADLT )
+ 031T #LANG (3) /*.99D003 A003 .
+      (AD=ADLT )
+ 037T #LANG (4) /*.99D003 A003 .
+      (AD=ADLT )
+ 043T #LANG (5) /*.99D003 A003 .
+      (AD=ADLT )
+/
+/
+ 002T '_' (045)
+/
+/
+ 002T 'Last Pesona-id:'
+ 020T EMPLOYEES.PERSONEL-ID /*.01U008 A008 .
+      (AD=ODLT )
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.PERSONEL-ID                                            
+* CDIR EMPLOYEES                        PERSONEL-ID                     ;
+* MAP2: END OF MAP *****************************************************
+END

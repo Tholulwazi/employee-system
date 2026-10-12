@@ -1,0 +1,68 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #G-MASSAGE #SEL(*)
+DEFINE DATA PARAMETER
+1 #G-MASSAGE (A020)
+1 #SEL (A001/00001:00004)
+END-DEFINE
+FORMAT PS=017 LS=078 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 017077        N0NYUCN             X ^      01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 005T 'USER:   '
+ 014T *USER /*.02S008 A008 .
+      (AD=ODT )
+ 055T *DATG /*.01S016 A015 .
+      (AD=ODT AL=016 )
+/
+ 005T 'MAP:'
+ 014T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 024T #G-MASSAGE /*.01U020 A020 .
+      (AD=ODT CD=GR )
+ 055T *TIME /*.01S016 A010 .
+      (AD=ODT AL=016 )
+/
+/
+ 020T 'WELCOME TO DEPT HUMAN RESOURCES '(U)
+/
+/
+/
+ 034T 'MENU'(BLI)
+/
+/
+ 021T '1.'
+ 027T #SEL (1) /*.99U001 A001 .
+      (AD=MDT HE='XMENUHLP' )
+   /**A1000040000100001000010000100001100004001001001001000HV
+ 032T 'Employees maintenance '
+/
+/
+ 021T '2.'
+ 027T #SEL (2) /*.99U001 A001 .
+      (AD=MDT HE='XMENUHLP' )
+ 032T 'Vehicle maintenance '
+/
+/
+ 021T '3.'
+ 027T #SEL (3) /*.99U001 A001 .
+      (AD=MDT HE='XMENUHLP' )
+ 032T 'Salary increases estimates '
+/
+/
+ 021T '4.'
+ 027T #SEL (4) /*.99U001 A001 .
+      (AD=MDT HE='XMENUHLP' )
+ 032T 'Exit '(REI)
+/
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

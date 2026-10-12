@@ -1,0 +1,102 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CV-REG-NUM COLOUR MAKE MODEL PERSONEL-ID VIHICLES.CHASIS-NUM
+*     VIHICLES.CLASS VIHICLES.DATE-ACQ VIHICLES.REG-NUM YEAR
+DEFINE DATA PARAMETER
+1  #CV-REG-NUM (C)
+1 COLOUR (A010)
+1 MAKE (A020)
+1 MODEL (A020)
+1 PERSONEL-ID (A008)
+1 VIHICLES.CHASIS-NUM (B004)
+1 VIHICLES.CLASS (A001)
+1 VIHICLES.DATE-ACQ (N08.0)
+1 VIHICLES.REG-NUM (A015)
+1 YEAR (N04.0)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X ^      01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 002T 'MAP:'
+ 014T *PROGRAM /*.01S011 A008 .
+      (AD=ODT CD=BL AL=011 )
+ 065T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'ADMIN NAME : '
+ 014T *USER /*.01S003 A008 .
+      (AD=ODT CD=BL AL=003 )
+ 065T *TIME /*.01S012 A010 .
+      (AD=ODT AL=012 )
+/
+/
+ 001T 'DASHBOARD '(BL)
+ 019T 'WELCOME'
+ 027T 'TO EMPLOYEES VEHICLES  '
+/
+ 026T 'ADD OR MODIFY VEHICLE'(GRI)
+/
+/
+ 001T 'PERSONNE-ID'(U)
+ 013T PERSONEL-ID /*.01U008 A008 .
+      (AD=ODT CD=TU )
+/
+ 001T 'MAKE      '(U)
+ 013T MAKE /*.99U010 A020 .
+      (AD=MDT CD=BL DL=010 CV=#CV-REG-NUM )
+/
+ 001T 'MODEL     '(U)
+ 013T MODEL /*.99U010 A020 .
+      (AD=MDW CD=TU DL=010 CV=#CV-REG-NUM )
+/
+ 001T 'REG-NUM   '(U)
+ 013T VIHICLES.REG-NUM /*.99D015 A015 .
+      (AD=MDRT CV=#CV-REG-NUM )
+/
+ 001T 'COLOUR    '(U)
+ 013T COLOUR /*.99U010 A010 .
+      (AD=MDT CD=YE CV=#CV-REG-NUM )
+/
+ 001T 'YEAR      '(U)
+ 013T YEAR /*.99U004 N04.0.
+      (AD=MDT CD=TU CV=#CV-REG-NUM )
+/
+ 001T 'CHASIS-NUM '(U)
+ 013T VIHICLES.CHASIS-NUM /*.99D008 B004 .
+      (AD=MDT CV=#CV-REG-NUM )
+/
+ 001T 'CLASS '(U)
+ 013T VIHICLES.CLASS /*.99D001 A001 .
+      (AD=MDRT CV=#CV-REG-NUM )
+/
+ 001T 'DATE-ACQUIR'(U)
+ 013T VIHICLES.DATE-ACQ /*.99D008 N08.0.
+      (AD=MDRT )
+/
+/
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01VIHICLES.REG-NUM                                                 
+INCDIR VIHICLES                         REG-NUM                         ;
+RULEVAR D01VIHICLES.CHASIS-NUM                                              
+INCDIR VIHICLES                         CHASIS-NUM                      ;
+RULEVAR D01VIHICLES.CLASS                                                   
+INCDIR VIHICLES                         CLASS                           ;
+RULEVAR D01VIHICLES.DATE-ACQ                                                
+INCDIR VIHICLES                         DATE-ACQ                        ;
+* MAP2: END OF MAP *****************************************************
+END

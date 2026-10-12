@@ -1,0 +1,30 @@
+DB: 012 FILE: 012  - VIHICLES                         DEFAULT SEQUENCE: 
+TYPE: ADABAS 
+ 
+T L DB Name                              F Leng  S D Remark 
+- - -- --------------------------------  - ----  - - -------------------- 
+*      >Natural Source Header 000000
+*      :CP
+*      
+*      
+*      <Natural Source Header
+  1 AA REG-NUM                           A   15  N D 
+  1 AB CHASIS-NUM                        B    4  F 
+  1 AC PERSONEL-ID                       A    8  N D NC 
+  1 AC N@AC-1                            I    2    D INDICATOR OF AC-1 
+G 1 CD CAR-DETAILS 
+  2 AD MAKE                              A   20  N D 
+  2 AE MODEL                             A   20  N 
+  2 AF COLOUR                            A   10  N D 
+  1 AG YEAR                              N  4.0  N 
+  1 AH CLASS                             A    1  F D 
+  1 AI LEASE-PUR                         A    1  F 
+  1 AJ DATE-ACQ                          N  8.0  N 
+G 1 AK MAINTAINANCE 
+  2 AL CURR-CODE                         A    3  N 
+M 2 AM MAINT-COST                        P  7.0  N 
+  1 AO MODEL-YEAR-MAKE                   A   24  N S 
+*      -------- SOURCE FIELD(S) ------- 
+*      AG-1(1-4) 
+*      AD-1(1-20) 
+******DDM OUTPUT TERMINATED****** 

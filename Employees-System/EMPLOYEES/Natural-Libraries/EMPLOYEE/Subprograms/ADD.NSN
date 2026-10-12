@@ -1,0 +1,99 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+/** New Subprogram ADD.
+/**
+/** :author tzu
+DEFINE DATA PARAMETER
+1 #PERSONNEL-ID (A8)
+LOCAL USING EMPL0L01
+LOCAL
+* 1 EMPLOYEES VIEW OF EMPLOYEES
+*   2 PERSONEL-ID (A8) 
+*   2 NAME (A20) 
+*   2 ADDRESS-LINE (A20/1:2) 
+*   2 CITY (A20) 
+*   2 POST-CODE (A10) 
+*   2 COUNTRY (A3) 
+*   2 AREA-CODE (A6) 
+*   2 PHONE (A15) 
+1 #CV-PERSONEL-ID  (C)
+1 #CV-NAME (C)
+1 #CV-ADDRESS-LINE (C/1:2)
+1 #CV-CITY (C) 
+1 #CV-COUNTRY (C) 
+1 #CV-POST-CODE (C) 
+1 #CV-AREA-CODE (C)
+1 #CV-PHONE (C) 
+1 #INDEX (N2)
+1 #SEL (A1/1:16)
+1 #ADDRESS-LINE(A20/1:2)
+1 #PROGRAM(A8)
+END-DEFINE
+#PROGRAM := #PROGRAM
+SET KEY
+  PF4 NAMED 'UPDATE'
+MOVE (AD=P) TO 
+  #CV-PERSONEL-ID
+  #CV-NAME
+  #CV-ADDRESS-LINE (1)
+  #CV-ADDRESS-LINE (2)
+  #CV-CITY
+  #CV-COUNTRY
+  #CV-POST-CODE
+  #CV-AREA-CODE
+  #CV-PHONE
+
+FIND EMPLOYEES WITH PERSONEL-ID = #PERSONNEL-ID
+  PERSONEL-ID:= #PERSONNEL-ID
+  #ADDRESS-LINE(*) := ADDRESS-LINE(*)
+  INPUT USING MAP "ADRESS"
+  IF *PF-KEY = 'PF4'
+    MOVE (AD=I) TO 
+      #CV-NAME
+      #CV-ADDRESS-LINE (*)
+      #CV-CITY
+      #CV-POST-CODE
+      #CV-AREA-CODE
+      #CV-PHONE
+    INPUT USING MAP "ADRESS"
+
+    IF NAME = ' '
+      REINPUT 'Surname can be Left Blank !'
+        MARK *NAME
+    END-IF
+    IF CITY = ' '
+      REINPUT' City is Mandotory, It can not be be left blank!'
+        MARK *CITY
+    END-IF
+
+    IF ADDRESS-LINE(1) = ' '
+      REINPUT ' Atleast one address can be filled'
+        MARK *ADDRESS-LINE(1)
+    END-IF
+    IF POST-CODE = ' '
+      REINPUT 'Postal code is mandotory, can not be left blank!'
+        MARK *POST-CODE
+    END-IF
+    IF AREA-CODE = ' '
+      REINPUT ' Area Code Can not be left blank!'
+        MARK *AREA-CODE
+    END-IF
+    IF PHONE = ' '
+      REINPUT ' Phone is mandotory, It can not be left blank!'
+        MARK *PHONE
+    END-IF
+    END-IF
+  MOVE (AD=P) TO
+        #CV-NAME
+      #CV-ADDRESS-LINE (*)
+      #CV-CITY
+      #CV-POST-CODE
+      #CV-AREA-CODE
+      #CV-PHONE
+  INPUT WITH TEXT ' UPDATE WAS A SUCCESS' USING MAP "ADRESS"
+/*UPDATE
+/*END OF TRANSACTION
+  END-FIND
+END

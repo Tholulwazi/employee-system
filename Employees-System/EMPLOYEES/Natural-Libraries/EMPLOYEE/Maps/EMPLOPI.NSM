@@ -1,0 +1,114 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CV-ALL #CV-ID #G-DESCRIPTION #PERSONNEL-ID #PROGRAM #S-DESCRIPTION
+*     EMPLOYEES.FIRST-NAME EMPLOYEES.GENDER EMPLOYEES.LANG(*) EMPLOYEES.MAR-STAT EMPLOYEES.MIDDLE-I
+*     EMPLOYEES.NAME
+DEFINE DATA PARAMETER
+1  #CV-ALL (C)
+1  #CV-ID (C)
+1 #G-DESCRIPTION (A010)
+1 #PERSONNEL-ID (N08.0)
+1 #PROGRAM (A008)
+1 #S-DESCRIPTION (A010)
+1 EMPLOYEES.FIRST-NAME (A020)
+1 EMPLOYEES.GENDER (A001)
+1 EMPLOYEES.LANG (A003/00001:00005)
+1 EMPLOYEES.MAR-STAT (A020)
+1 EMPLOYEES.MIDDLE-I (A020)
+1 EMPLOYEES.NAME (A020)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 021T 'HR Information System'
+ 064T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP     :'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 071T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 021T 'Employee Personal Detail'
+/
+/
+ 002T 'Person ID:'
+ 019T #PERSONNEL-ID /*.01D008 N08.0.
+      (AD=ODLT CV=#CV-ID )
+/
+ 002T 'Surname:'
+ 019T EMPLOYEES.NAME /*.99V020 A020 .
+      (AD=MDLT CV=#CV-ALL )
+/
+/
+ 002T 'First Name:'
+ 019T EMPLOYEES.FIRST-NAME /*.99V020 A020 .
+      (AD=MDLT CV=#CV-ALL )
+/
+ 002T 'Middle Name:'
+ 019T EMPLOYEES.MIDDLE-I /*.99V020 A020 .
+      (AD=MDLT CV=#CV-ALL )
+/
+/
+ 002T 'Gender:'
+ 019T EMPLOYEES.GENDER /*.99V001 A001 .
+      (AD=MDLT CV=#CV-ALL HE='GNDRHELP',#G-DESCRIPTION )
+ 021T #G-DESCRIPTION /*.99U010 A010 .
+      (AD=MDLT CV=#CV-ALL )
+/
+ 002T 'Marital Status:'
+ 019T EMPLOYEES.MAR-STAT /*.99V001 A020 .
+      (AD=MDLT AL=001 CV=#CV-ALL HE='MARTHELP',#S-DESCRIPTION )
+ 021T #S-DESCRIPTION /*.99U010 A010 .
+      (AD=MDT CV=#CV-ALL )
+/
+/
+ 002T 'Language :'
+ 019T EMPLOYEES.LANG (1) /*.01U003 A003 .
+      (AD=ODLT )
+   /**A1000050000100001000010000100001010001005001000002000HV
+ 024T EMPLOYEES.LANG (2) /*.01U003 A003 .
+      (AD=ODLT )
+ 029T EMPLOYEES.LANG (3) /*.01U003 A003 .
+      (AD=ODLT )
+ 034T EMPLOYEES.LANG (4) /*.01U003 A003 .
+      (AD=ODLT )
+ 039T EMPLOYEES.LANG (5) /*.01U003 A003 .
+      (AD=ODLT )
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.NAME                                                   
+INCDIR EMPLOYEES                        NAME                            ;
+RULEVAR D01EMPLOYEES.FIRST-NAME                                             
+INCDIR EMPLOYEES                        FIRST-NAME                      ;
+RULEVAR D01EMPLOYEES.MIDDLE-I                                               
+INCDIR EMPLOYEES                        MIDDLE-I                        ;
+RULEVAR D01EMPLOYEES.GENDER                                                 
+INCDIR EMPLOYEES                        GENDER                          ;
+RULEVAR D01EMPLOYEES.MAR-STAT                                               
+INCDIR EMPLOYEES                        MAR-STAT                        ;
+RULEVAR D01EMPLOYEES.LANG                                                   
+* CDIR EMPLOYEES                        LANG                            ;
+* MAP2: END OF MAP *****************************************************
+END

@@ -1,0 +1,77 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+/** New Subprogram WRK41ADD.
+/**
+/** :author tzu
+DEFINE DATA PARAMETER
+1 #PERSONNEL-ID (A8)
+1 #NAME (A20)
+LOCAL USING EMPL0L01
+LOCAL
+* 1 EMPLOYEES-DATA
+*   2 PERSONEL-ID (A8) /* CNNNNNNN
+*   2 NAME (A20) /* SURNAME / FAMILY NAME
+*   2 DEPT (A6) /* DDDDSS
+*   2 JOB-TITLE (A25)
+*   2 LEAVE-DUE (N2.0) /* VACATION DAYS/YEAR
+*   2 LEAVE-TAKEN (N2.0) /* VACATION DAYS TAKEN
+* ******************************************************************
+*   2 CURR-CODE (A3/1:3)
+*   2 SALARY (P9.0 /1:3)
+*   2 BONUS (P9.0/1:3,1:3)
+*   2 LEAVE-START (N8.0/1:3)
+*   2 LEAVE-END (N8.0/1:3)
+1 #PROGRAM(A8)
+1 #BONUS (P9.0/1:3,1:3)
+1 #CV-JOB-TITLE (C)
+1 #CV-DEPARTMENT (C)
+******************************************************************
+/*INDEX
+1 #INDEX (N3)
+******************************************************************
+END-DEFINE
+SET KEY 
+  PF4 NAMED 'Update'
+  PF3 NAMED 'UNDO'
+  ENTR NAMED 'Enter'
+#PROGRAM := *PROGRAM
+
+
+
+MOVE (AD=P) TO #CV-JOB-TITLE #CV-DEPARTMENT
+
+FIND EMPLOYEES WITH PERSONEL-ID = #PERSONNEL-ID
+
+  INPUT USING MAP "CO-INFO" 
+  IF *PF-KEY = 'PF4'
+    MOVE (AD=I) TO #CV-JOB-TITLE #CV-DEPARTMENT
+
+    INPUT USING MAP "CO-INFO"
+
+    IF JOB-TITLE = ' '
+      REINPUT 'Job Title Can not be Left Blank!'
+        MARK *JOB-TITLE
+    END-IF
+/**
+    IF DEPT = ' '
+      REINPUT 'Department Can not be Left Blank!'
+        MARK *DEPT
+    END-IF
+
+    IF *PF-KEY = 'ENTR'
+      IGNORE
+    END-IF
+  END-IF
+  MOVE (AD=P) TO #CV-JOB-TITLE #CV-DEPARTMENT
+  INPUT WITH TEXT ' UPDATE WAS A SUCCESS' USING MAP "CO-INFO"
+  INPUT USING MAP "UPDPINFO"
+
+*   UPDATE
+*   IF *PF-KEY = 'PF3'
+*     BACKOUT TRANSACTION
+*   END-IF
+*   END OF TRANSACTION
+END-FIND
+END

@@ -1,0 +1,29 @@
+DEFINE DATA LOCAL
+/* >Natural Source Header 000000
+/* :Mode S
+/* :CP
+/* <Natural Source Header
+/** New Local Data Area EMPL0001.
+/**
+/** :author tzu
+/* Data Definition Module VEHICLES
+1 VIHICLES VIEW OF VIHICLES
+  2 REG-NUM (A15)
+  2 CHASIS-NUM (B4)
+  2 PERSONEL-ID (A8) /* NC
+  2 REDEFINE PERSONEL-ID /* NC
+  3 P-ID (N8) /* NC
+  2 N@AC-1 (I2) /* INDICATOR OF AC-1
+  2 CAR-DETAILS
+    3 MAKE (A20)
+    3 MODEL (A20)
+    3 COLOUR (A10)
+  2 YEAR (N4.0)
+  2 CLASS (A1)
+  2 LEASE-PUR (A1)
+  2 DATE-ACQ (N8.0)
+  2 MAINTAINANCE
+    3 CURR-CODE (A3)
+    3 MAINT-COST (P7.0/1:8)
+/**  2 MODEL-YEAR-MAKE (A24)
+END-DEFINE

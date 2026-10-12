@@ -1,0 +1,272 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CHASIS-NUM(*) #COLOUR(*) #LATE-RESTART-NAME #MAKE(*) #MODEL(*) #PROGRAM
+*     #RESTART-NAME #SEL(*) #V-PERSONEL-ID(*)
+DEFINE DATA PARAMETER
+1 #CHASIS-NUM (B004/00001:00016)
+1 #COLOUR (A010/00001:00016)
+1 #LATE-RESTART-NAME (A020)
+1 #MAKE (A020/00001:00016)
+1 #MODEL (A020/00001:00016)
+1 #PROGRAM (A008)
+1 #RESTART-NAME (A020)
+1 #SEL (A001/00001:00016)
+1 #V-PERSONEL-ID (A008/00001:00016)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X ^      01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 002T 'PROGRAM :'(I)
+ 013T #PROGRAM /*.01U014 A008 .
+      (AD=OIT CD=TU AL=014 )
+ 061T *DATG /*.01S018 A015 .
+      (AD=OIT CD=TU AL=018 )
+/
+ 002T 'MAP     :'(I)
+ 013T *PROGRAM /*.01S009 A008 .
+      (AD=ODT AL=009 )
+ 061T *TIME /*.01S018 A010 .
+      (AD=OIT CD=TU AL=018 )
+/
+ 023T 'EMPLOYEES VEVICLE LIST'(I)
+/
+/
+ 002T 'RESTART P-ID:'(I)
+ 016T #RESTART-NAME /*.99U020 A020 .
+      (AD=MIT )
+ 038T #LATE-RESTART-NAME /*.01D020 A020 .
+      (AD=OIRT CD=GR )
+/
+/
+ 002T 'Sel:'(U)
+ 007T 'P id:'(U)
+ 017T 'Model:     '(U)
+ 037T 'CAR-MAKE   '(U)
+ 059T 'Colour: '(U)
+ 071T 'Chas-num'(U)
+/
+ 003T #SEL (1) /*.99U001 A001 .
+      (AD=MIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 007T #V-PERSONEL-ID (1) /*.01U008 A008 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 017T #MODEL (1) /*.01U020 A020 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 037T #MAKE (1) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 059T #COLOUR (1) /*.01U010 A010 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 071T #CHASIS-NUM (1) /*.01D008 B004 .
+      (AD=ODT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+/
+ 003T #SEL (2) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (2) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (2) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (2) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (2) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (2) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (3) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (3) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (3) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (3) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (3) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (3) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (4) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (4) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (4) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (4) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (4) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (4) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (5) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (5) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (5) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (5) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (5) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (5) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (6) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (6) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (6) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (6) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (6) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (6) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (7) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (7) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (7) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (7) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (7) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (7) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (8) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (8) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (8) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (8) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (8) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (8) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (9) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (9) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (9) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (9) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (9) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (9) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (10) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (10) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (10) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (10) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (10) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (10) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (11) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (11) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (11) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (11) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (11) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (11) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (12) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (12) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (12) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (12) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (12) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (12) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (13) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (13) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (13) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (13) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (13) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (13) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (14) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (14) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (14) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (14) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (14) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (14) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (15) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (15) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (15) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (15) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (15) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (15) /*.01D008 B004 .
+      (AD=ODT )
+/
+ 003T #SEL (16) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #V-PERSONEL-ID (16) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #MODEL (16) /*.01U020 A020 .
+      (AD=OIT )
+ 037T #MAKE (16) /*.01D020 A020 .
+      (AD=ODLT CD=BL )
+ 059T #COLOUR (16) /*.01U010 A010 .
+      (AD=OIT )
+ 071T #CHASIS-NUM (16) /*.01D008 B004 .
+      (AD=ODT )
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

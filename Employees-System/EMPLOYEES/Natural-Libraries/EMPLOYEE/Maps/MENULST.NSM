@@ -1,0 +1,234 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #CITY(*) #FIRST-NAME(*) #LATE-RESTART-NAME #NAME(*) #PERSONNEL-ID(*)
+*     #PROGRAM #RESTART-NAME #SEL(*)
+DEFINE DATA PARAMETER
+1 #CITY (A020/00001:00016)
+1 #FIRST-NAME (A020/00001:00016)
+1 #LATE-RESTART-NAME (A020)
+1 #NAME (A020/00001:00016)
+1 #PERSONNEL-ID (A008/00001:00016)
+1 #PROGRAM (A008)
+1 #RESTART-NAME (A020)
+1 #SEL (A001/00001:00016)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X ^      01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 002T 'PROGRAM :'(I)
+ 013T #PROGRAM /*.01U014 A008 .
+      (AD=OIT CD=TU AL=014 )
+ 061T *DATG /*.01S018 A015 .
+      (AD=OIT CD=TU AL=018 )
+/
+ 061T *TIME /*.01S018 A010 .
+      (AD=OIT CD=TU AL=018 )
+/
+ 026T 'EMPLOYEES LIST    '(I)
+/
+/
+ 002T 'RESTART NAME:'(I)
+ 016T #RESTART-NAME /*.99U020 A020 .
+      (AD=MIT )
+ 038T #LATE-RESTART-NAME /*.01D020 A020 .
+      (AD=OIRT CD=GR )
+/
+/
+ 002T 'Sel:'(U)
+ 007T 'P id:'(U)
+ 017T 'Name:      '(U)
+ 042T 'First Name:'(U)
+ 059T 'City:'(U)
+/
+ 003T #SEL (1) /*.99U001 A001 .
+      (AD=MIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 007T #PERSONNEL-ID (1) /*.01U008 A008 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 017T #NAME (1) /*.01U020 A020 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 038T #FIRST-NAME (1) /*.01D020 A020 .
+      (AD=OILT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+ 059T #CITY (1) /*.01U020 A020 .
+      (AD=OIT )
+   /**A1000160000100001000010000100001100016001001000001000HV
+/
+ 003T #SEL (2) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (2) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (2) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (2) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (2) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (3) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (3) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (3) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (3) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (3) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (4) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (4) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (4) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (4) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (4) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (5) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (5) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (5) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (5) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (5) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (6) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (6) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (6) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (6) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (6) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (7) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (7) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (7) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (7) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (7) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (8) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (8) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (8) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (8) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (8) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (9) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (9) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (9) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (9) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (9) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (10) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (10) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (10) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (10) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (10) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (11) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (11) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (11) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (11) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (11) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (12) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (12) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (12) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (12) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (12) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (13) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (13) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (13) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (13) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (13) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (14) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (14) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (14) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (14) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (14) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (15) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (15) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (15) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (15) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (15) /*.01U020 A020 .
+      (AD=OIT )
+/
+ 003T #SEL (16) /*.99U001 A001 .
+      (AD=MIT )
+ 007T #PERSONNEL-ID (16) /*.01U008 A008 .
+      (AD=OIT )
+ 017T #NAME (16) /*.01U020 A020 .
+      (AD=OIT )
+ 038T #FIRST-NAME (16) /*.01D020 A020 .
+      (AD=OILT )
+ 059T #CITY (16) /*.01U020 A020 .
+      (AD=OIT )
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

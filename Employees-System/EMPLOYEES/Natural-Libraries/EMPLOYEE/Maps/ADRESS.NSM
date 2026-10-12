@@ -1,0 +1,112 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #ADDRESS-LINE(*) #CV-ADDRESS-LINE(*) #CV-AREA-CODE #CV-CITY #CV-NAME
+*     #CV-PHONE #CV-POST-CODE #PROGRAM EMPLOYEES.AREA-CODE EMPLOYEES.CITY
+*     EMPLOYEES.COUNTRY EMPLOYEES.NAME EMPLOYEES.PERSONEL-ID EMPLOYEES.PHONE EMPLOYEES.POST-CODE
+DEFINE DATA PARAMETER
+1 #ADDRESS-LINE (A020/00001:00002)
+1  #CV-ADDRESS-LINE (C/00001:00002)
+1  #CV-AREA-CODE (C)
+1  #CV-CITY (C)
+1  #CV-NAME (C)
+1  #CV-PHONE (C)
+1  #CV-POST-CODE (C)
+1 #PROGRAM (A008)
+1 EMPLOYEES.AREA-CODE (A006)
+1 EMPLOYEES.CITY (A020)
+1 EMPLOYEES.COUNTRY (A003)
+1 EMPLOYEES.NAME (A020)
+1 EMPLOYEES.PERSONEL-ID (A008)
+1 EMPLOYEES.PHONE (A015)
+1 EMPLOYEES.POST-CODE (A010)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 012T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 050T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP     :'
+ 012T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 050T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 010T 'DASHBOARD : ADDRESS FOR EMPLOYEES'
+/
+/
+ 002T 'Person ID:'
+ 021T EMPLOYEES.PERSONEL-ID /*.01D008 A008 .
+      (AD=ODRT )
+/
+ 002T 'Surname:'
+ 021T EMPLOYEES.NAME /*.99D020 A020 .
+      (AD=MDLT CV=#CV-NAME )
+/
+ 002T 'Address Line 1:'
+ 021T #ADDRESS-LINE (1) /*.99U020 A020 .
+      (AD=MDT CV=#CV-ADDRESS-LINE(1) )
+   /**A1000020000100001000010000100001100002001001000001000HV
+/
+ 002T 'Address Line 2:'
+ 021T #ADDRESS-LINE (2) /*.99U020 A020 .
+      (AD=MDT CV=#CV-ADDRESS-LINE(2) )
+/
+ 002T 'Postal Code:'
+ 021T EMPLOYEES.AREA-CODE /*.99D006 A006 .
+      (AD=MDLT CV=#CV-POST-CODE )
+/
+ 002T 'City:'
+ 021T EMPLOYEES.CITY /*.99D020 A020 .
+      (AD=MDLT CV=#CV-CITY )
+/
+ 002T 'Country:'
+ 021T EMPLOYEES.COUNTRY /*.01D003 A003 .
+      (AD=ODLT )
+/
+/
+ 002T 'Area Code:'
+ 021T EMPLOYEES.POST-CODE /*.99D010 A010 .
+      (AD=MDLT CV=#CV-AREA-CODE )
+/
+ 002T 'Telephone:'
+ 021T EMPLOYEES.PHONE /*.99D015 A015 .
+      (AD=MDLT CV=#CV-PHONE )
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.PERSONEL-ID                                            
+* CDIR EMPLOYEES                        PERSONEL-ID                     ;
+RULEVAR D01EMPLOYEES.NAME                                                   
+INCDIR EMPLOYEES                        NAME                            ;
+RULEVAR D01EMPLOYEES.AREA-CODE                                              
+INCDIR EMPLOYEES                        AREA-CODE                       ;
+RULEVAR D01EMPLOYEES.CITY                                                   
+INCDIR EMPLOYEES                        CITY                            ;
+RULEVAR D01EMPLOYEES.COUNTRY                                                
+* CDIR EMPLOYEES                        COUNTRY                         ;
+RULEVAR D01EMPLOYEES.POST-CODE                                              
+INCDIR EMPLOYEES                        POST-CODE                       ;
+RULEVAR D01EMPLOYEES.PHONE                                                  
+INCDIR EMPLOYEES                        PHONE                           ;
+* MAP2: END OF MAP *****************************************************
+END

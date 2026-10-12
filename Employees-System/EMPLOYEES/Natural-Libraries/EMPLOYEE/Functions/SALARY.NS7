@@ -1,0 +1,18 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+/** New Function SALARY.
+/**
+/** :author tzu
+DEFINE FUNCTION SALARY
+  RETURNS #NEW-SALARY (N9.3) 
+                                                 
+  DEFINE DATA PARAMETER                                                 
+  1 #PERCENT (N2.2)
+  1 #OLD-SALARY (N9.2)
+  END-DEFINE                                                                                                                            
+
+   #NEW-SALARY := #OLD-SALARY * (1 + #PERCENT / 100) 
+END-FUNCTION
+END

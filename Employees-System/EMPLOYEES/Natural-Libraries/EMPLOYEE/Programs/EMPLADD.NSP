@@ -1,0 +1,147 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+/** New Program WRK42-AD.
+/**
+/** :author tzu
+/* TODO Enter your code here
+DEFINE DATA LOCAL
+  USING EMPL0L01
+LOCAL
+*****************************************************
+1 #FIRST-NAME (A20) /* FIRST / CHRISTIAN NAME
+1 #NAME (A20) /* SURNAME / FAMILY NAME
+1 #MAR-STAT (A20) /* M=MARRIED
+1 #GENDER (A1)
+1 #ADDRESS-LINE (A20/1:2) /* ALL ADDRESS LINES
+1 #CITY (A20) /* MAIN TOWN/CITY
+1 #POST-CODE (A10) /* POSTAL ADDRESS CODE
+1 #COUNTRY (A3) /* COUNTRY CODE
+1 #DEPT (A6) /* DDDDSS
+1 #JOB-TITLE (A25)
+1 #INDEX (N5)
+1 #PROGRAM (A8)
+1 #PERSONNEL-ID (N8)
+1  #LANG (A3/1:5)
+END-DEFINE
+SET CONTROL 'MT'
+SET KEY
+  PF3 NAMED 'Exit'
+  ENTR NAMED 'Entr'
+#PROGRAM := *PROGRAM
+*   IF PERSONEL-ID IS (N8)
+*     #PERSONNEL-ID:=VAL (PERSONEL-ID)
+*   END-IF
+R1. READ (1) EMPLOYEES IN DESCENDING SEQUENCE  BY PERSONEL-ID 
+  UPDATE (R1.)
+
+  INPUT USING MAP "ADD-EMPL"
+/**
+  DECIDE ON EVERY VALUE OF *PF-KEY
+    VALUE 'PF3'
+      ESCAPE MODULE
+    VALUE 'ENTR'
+      IGNORE
+    VALUE 'PF8'
+      ESCAPE BOTTOM
+    NONE
+      REINPUT 'Enter a valid key !!!'
+  END-DECIDE
+  /**
+  IF #NAME EQ  ' '
+    REINPUT 'Surname Can not be left Blank'
+      MARK  *#NAME
+  END-IF
+/**
+  IF #FIRST-NAME EQ ' '
+    REINPUT 'First Name Can not be left Blank'
+      MARK  *#FIRST-NAME
+  END-IF
+/**
+
+  IF #MAR-STAT EQ  ' ' 
+    REINPUT 'Marital Status Is Required - Please enter (S,M,D OR W)'
+      MARK  *#MAR-STAT
+  END-IF
+  /**
+IF NOT (#MAR-STAT = 'S'  OR #MAR-STAT   = 'M' OR #MAR-STAT = 'D' OR #MAR-STAT = 'W')
+REINPUT ' Please enter : ("S"-Single,"M"-Married,"D"-Divorsed OR "W"-Widowed)'
+      MARK  *#MAR-STAT
+
+  END-IF
+  /**
+  IF #GENDER EQ ' '
+    REINPUT 'Gender Is Required-Please Enter: "M" or "F" '
+      MARK  *#GENDER
+  END-IF
+  /**
+  IF NOT ( #GENDER EQ 'M' OR EQ 'F')
+    REINPUT 'Please Enter: "M" or "F" '
+      MARK  *#GENDER
+
+  END-IF
+  /**
+  IF #ADDRESS-LINE(1) EQ  ' '
+    REINPUT 'Adress Can not be left Blank-Please Enter Your Address'
+      MARK  *#ADDRESS-LINE(1)
+  END-IF
+  /**
+  IF #CITY EQ  ' '
+    REINPUT 'City Can not be left Blank'
+      MARK  *#CITY
+  END-IF
+  /**
+  IF #POST-CODE EQ  ' '
+    REINPUT 'Post-Code Can not be left Blank'
+      MARK  *#POST-CODE
+  END-IF
+  /**
+  IF #COUNTRY EQ  ' '
+    REINPUT 'Country Can not be left Blank'
+      MARK  *#COUNTRY
+  END-IF
+  /**
+  IF #DEPT EQ  ' '
+    REINPUT 'Department Can not be left Blank'
+      MARK  *#DEPT
+  END-IF
+  /**
+  IF #JOB-TITLE EQ  ' '
+    REINPUT 'Job Title Can not be left Blank'
+      MARK  *#JOB-TITLE
+  END-IF
+  /**
+  IF #LANG(1) EQ  ' '
+    REINPUT 'Atleast one Language should be filled '
+      MARK *#LANG(1)
+  END-IF
+
+  /**
+  FIRST-NAME := #FIRST-NAME
+  NAME := #NAME
+  MAR-STAT := #MAR-STAT
+  GENDER := #GENDER
+  ADDRESS-LINE(*) := #ADDRESS-LINE(*)
+  CITY  := #CITY
+  POST-CODE := #POST-CODE
+  COUNTRY  := #COUNTRY
+  DEPT := #DEPT
+  JOB-TITLE := #JOB-TITLE
+  LANG (*) :=#LANG(*)
+
+
+  /**
+  IF PERSONEL-ID IS (N8)
+    #PERSONNEL-ID:=VAL (PERSONEL-ID)
+  END-IF
+  /**
+  ADD 1 TO #PERSONNEL-ID
+  INPUT USING MAP "PERSID"
+  STORE RECORD IN EMPLOYEES
+  END OF TRANSACTION 
+END-READ (R1.)
+
+WRITE 'LAST PERSONEL ID'PERSONEL-ID
+WRITE 'NEW PERSONEL ID'#PERSONNEL-ID
+END

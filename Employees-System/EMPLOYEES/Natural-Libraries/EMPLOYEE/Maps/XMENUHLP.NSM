@@ -1,0 +1,31 @@
+* >Natural Source Header 000000
+* :Mode S
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+FORMAT PS=011 LS=041 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(   00000               *
+* 011040        N0NNUCN             X        01 SYSPROF NRH            *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+/
+ 009T 'HELP FOR ''MENU'' SELECTION'
+/
+/
+ 009T 'E - EMPLOYEE MANTAINANCE'
+/
+/
+ 009T 'V - VEHICLE MANTAINANCE'
+/
+/
+ 009T 'S - SALARY MANTAINANCE'
+/
+/
+ 009T 'Q - QUIT ( Y & N'
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

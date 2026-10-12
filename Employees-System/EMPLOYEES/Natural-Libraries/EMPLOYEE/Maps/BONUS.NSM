@@ -1,0 +1,71 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #COUNTER #PROGRAM
+DEFINE DATA PARAMETER
+1 #COUNTER (N05.0)
+1 #PROGRAM (A008)
+END-DEFINE
+FORMAT PS=024 LS=080 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 024079        N0NNUCN             X        01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 001T 'PROGRAM :'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 064T *DATG /*.01S015 A015 .
+      (AD=ODT )
+/
+ 001T 'MAP:'
+ 011T *PROGRAM /*.01S008 A008 .
+      (AD=ODT )
+ 023T 'HR DEPARTMENT'
+ 064T *TIME /*.01S007 A010 .
+      (AD=ODT )
+/
+ 012T 'DASHBOARD : BONUS UPDATE FOR THE MONTH'
+ 051T *DATX /*.01S010 D    .
+      (AD=ODT DF=L )
+/
+/
+/
+ 002T 'HR ID:'
+ 009T *USER /*.01S020 A008 .
+      (AD=OULT )
+/
+ 001T '_' (045)
+/
+/
+ 001T 'NUMBER OF EMPLOYEES RECEIVED BONUSES :'
+ 040T #COUNTER /*.01D005 N05.0.
+      (AD=OIRT CD=BL )
+/
+/
+ 001T 'LAST PERSON EXECUTED UPDATE          :'
+ 040T *USER /*.02S008 A008 .
+      (AD=ODT )
+/
+ 001T 'DEVICE EXECUTED UPDATE               :'
+ 040T *HOSTNAME /*.01S023 A064 .
+      (AD=ODT AL=023 )
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+* MAP2: END OF MAP *****************************************************
+END

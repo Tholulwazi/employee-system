@@ -1,0 +1,11 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP windows-1252
+* :LineIncrement 10
+* <Natural Source Header
+DEFINE DATA LOCAL
+1 #TEST (A70) INIT FULL LENGTH <' COMMING SOON '>
+END-DEFINE
+SET CONTROL  'MT'
+WRITE #TEST (AL=70)
+END

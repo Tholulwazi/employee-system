@@ -1,0 +1,55 @@
+* >Natural Source Header 000000
+* :Mode R
+* :CP
+* <Natural Source Header
+* MAP2: PROTOTYPE VERSION 820 --- CREATED BY ONE 9.3.1 ---
+* INPUT USING MAP 'XXXXXXXX'
+*     #PERSONNEL-ID #PROGRAM EMPLOYEES.FIRST-NAME EMPLOYEES.NAME
+DEFINE DATA PARAMETER
+1 #PERSONNEL-ID (N08.0)
+1 #PROGRAM (A008)
+1 EMPLOYEES.FIRST-NAME (A020)
+1 EMPLOYEES.NAME (A020)
+END-DEFINE
+FORMAT PS=012 LS=051 ZP=OFF SG=OFF KD=OFF IP=OFF
+* MAP2: MAP PROFILES *****************************        200***********
+* .TTAAAMMOO   D I D I N D I D I        ?_)^&:+(                       *
+* 012050        N0NNUCN             X ^      01 SYSPROF NR             *
+************************************************************************
+INPUT          (     IP=OFF                                           /*
+                                                                       )
+ 002T 'PROGRAM:'
+ 011T #PROGRAM /*.01U008 A008 .
+      (AD=ODT )
+ 032T *DATG /*.01S014 A015 .
+      (AD=ODT AL=014 )
+/
+ 033T *TIME /*.01S010 A010 .
+      (AD=ODT )
+/
+/
+ 003T 'Employee was added Successful !    '
+/
+/
+ 003T 'Name:'
+ 025T EMPLOYEES.FIRST-NAME /*.01U020 A020 .
+      (AD=OULT )
+/
+ 003T 'Surname:'
+ 025T EMPLOYEES.NAME /*.01U020 A020 .
+      (AD=OULT )
+/
+ 003T 'Generated Personel-ID:'
+ 025T #PERSONNEL-ID /*.01D008 N08.0.
+      (AD=OULT )
+/
+/
+/
+/
+* MAP2: VALIDATION *****************************************************
+RULEVAR D01EMPLOYEES.FIRST-NAME                                             
+* CDIR EMPLOYEES                        FIRST-NAME                      ;
+RULEVAR D01EMPLOYEES.NAME                                                   
+* CDIR EMPLOYEES                        NAME                            ;
+* MAP2: END OF MAP *****************************************************
+END
